@@ -7,8 +7,9 @@ sys.path.append("/")
 os.environ["DJANGO_SETTINGS_MODULE"] = 'vacavaca.settings'
 django.setup()
 
-from vacancies.models import Specialty, Company, Vacancy
-import vacancies.data as data
+from apps.vacancies import Specialty, Company, Vacancy
+from apps import vacancies as data
+
 
 def fill_db():
     specialties = {}

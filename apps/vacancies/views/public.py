@@ -1,10 +1,12 @@
 import logging
 
-from django.http import HttpResponseNotFound, HttpResponse
+from django.http import HttpResponseNotFound, HttpResponse, HttpResponseForbidden
 from django.db.models import Count, Prefetch
+from django.shortcuts import redirect
 from django.views.generic import TemplateView, DetailView
 
-from vacancies.models import Specialty, Company, Vacancy
+from apps.vacancies.forms import ApplicationForm
+from apps.vacancies.models import Specialty, Company, Vacancy
 
 TITLE_ALL_VACANCIES = "Все вакансии"
 
@@ -54,7 +56,27 @@ class VacancyView(DetailView):
     template_name = 'vacancy.html'
     model = Vacancy
     context_object_name = 'vacancy'
+    form_class = ApplicationForm
     queryset = Vacancy.objects.select_related('company')
+    object = None
+
+    def get_context_data(self, form=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = form or self.form_class()
+        return context
+
+    def post(self, request, pk):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden()
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            application = form.save(commit=False)
+            application.user = request.user
+            application.vacancy_id = pk
+            application.save()
+            return redirect(request.path)
+        self.object = self.get_object()
+        return self.render_to_response(self.get_context_data(form=form))
 
 
 def custom_handler404(request, exception):

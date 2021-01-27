@@ -13,23 +13,25 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import url
 from django.contrib import admin
-from django.urls import path, re_path
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
-from vacancies.views import IndexView, VacanciesView, VacanciesBySpecialtyView, \
-    CompanyView, VacancyView, custom_handler404, custom_handler500
+from apps.vacancies.views import public
+
+app_name = 'vacavaca'
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', IndexView.as_view(), name='main'),
-    path('vacancies/', VacanciesView.as_view(), name='vacancies'),
-    re_path(r'^vacancies/cat/(?P<specialty>\w+)?/$',
-            VacanciesBySpecialtyView.as_view(),
-            name='vacancies_by_specialty'
-            ),
-    re_path(r'^companies/(?P<pk>\d+)?/$', CompanyView.as_view(), name='company'),
-    re_path(r'^vacancies/(?P<pk>\d+)?/$', VacancyView.as_view(), name='vacancy'),
+    path('', include('apps.vacancies.urls')),
 ]
 
-handler404 = custom_handler404
-handler500 = custom_handler500
+handler404 = public.custom_handler404
+handler500 = public.custom_handler500
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

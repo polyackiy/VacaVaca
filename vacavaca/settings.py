@@ -37,7 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'vacancies',
+    'crispy_forms',
+    'phonenumber_field',
+    'apps.vacancies',
+    'apps.accounts',
+    'vacavaca',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +130,14 @@ STATICFILES_DIRS = [
 
 USE_THOUSAND_SEPARATOR = True
 THOUSAND_SEPARATOR = ' '
+
+MEDIA_ROOT = 'media'
+MEDIA_URL = '/media/'
+
+MEDIA_COMPANY_IMAGE_DIR = 'company_images'
+MEDIA_SPECIALTY_IMAGE_DIR = 'specialty_images'
+
+DEFAULT_COMPANY_IMAGE = 'https://place-hold.it/130x80'
+DEFAULT_SPECIALTY_IMAGE = 'https://place-hold.it/80x80'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
