@@ -16,12 +16,12 @@
               <h1 class="h3 mb-3 font-weight-normal">
                   <a href="{% url 'vacancies:index' %}" class="text-dark">Джуманджи</a>
               </h1>
-            <p class="h5 font-weight-light">Войдите, чтобы управлять</p>
+            <p class="h5 font-weight-light">Создайте аккаунт</p>
           </div>
           {% load crispy_forms_tags %}
           {% crispy form %}
         </form>
-        <div class="mt-4 text-center"><p>Нет аккаунта? <a href="/signup">Зарегистрируйтесь!</a></p></div>
+        <div class="mt-4 text-center"><p>Есть аккаунт? <a href="/login">Войдите!</a></p></div>
       </div>
     </div>
   </main>

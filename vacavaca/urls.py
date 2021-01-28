@@ -27,6 +27,7 @@ app_name = 'vacavaca'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('apps.vacancies.urls')),
+    path('', include('apps.accounts.urls')),
 ]
 
 handler404 = public.custom_handler404

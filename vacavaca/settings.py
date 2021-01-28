@@ -141,3 +141,6 @@ DEFAULT_COMPANY_IMAGE = 'https://place-hold.it/130x80'
 DEFAULT_SPECIALTY_IMAGE = 'https://place-hold.it/80x80'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
