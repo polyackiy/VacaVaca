@@ -20,8 +20,8 @@ class MySignupView(CreateView):
         form_to_return = super().form_valid(form)
         # autologin after signup
         user = authenticate(
-            username=form.cleaned_data["username"],
-            password=form.cleaned_data["password1"],
+            username=form.cleaned_data['username'],
+            password=form.cleaned_data['password1'],
         )
         login(self.request, user)
         return form_to_return

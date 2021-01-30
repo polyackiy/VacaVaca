@@ -14,7 +14,7 @@ class MyCompanyBaseEditView(SuccessMessageMixin):
     model = Company
     template_name = 'company-edit.html'
     form_class = CompanyForm
-    success_url = reverse_lazy('vacancies:company')
+    success_url = reverse_lazy('vacancies:my_company')
 
 
 class MyCompanyCreateView(MyCompanyBaseEditView, CreateView):

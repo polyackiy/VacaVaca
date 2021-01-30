@@ -74,9 +74,13 @@ class VacancyView(DetailView):
             application.user = request.user
             application.vacancy_id = pk
             application.save()
-            return redirect(request.path)
+            return redirect('/vacancies/appsuccess')
         self.object = self.get_object()
         return self.render_to_response(self.get_context_data(form=form))
+
+
+class ApplicationSuccessView(TemplateView):
+    template_name = 'app-success.html'
 
 
 def custom_handler404(request, exception):

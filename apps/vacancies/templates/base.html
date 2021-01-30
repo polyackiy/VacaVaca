@@ -32,7 +32,11 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="#">Профиль</a>
                         <a class="dropdown-item" href="#">Резюме</a>
-                        <a class="dropdown-item" href="{% url 'vacancies:my_company' %}">Компания</a>
+                        {% if user.company %}
+                            <a class="dropdown-item" href="{% url 'vacancies:my_company' %}">Компания</a>
+                        {% else %}
+                            <a class="dropdown-item" href="{% url 'vacancies:my_company_lets_start' %}">Компания</a>
+                        {% endif %}
                         <a class="dropdown-item" href="{% url 'accounts:logout' %}">Выйти</a>
                     </div>
                   </div>

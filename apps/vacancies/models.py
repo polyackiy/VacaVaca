@@ -8,12 +8,12 @@ from vacavaca.settings import MEDIA_COMPANY_IMAGE_DIR, MEDIA_SPECIALTY_IMAGE_DIR
 
 
 class Company(models.Model):
-    name = models.CharField(max_length=128)
-    location = models.CharField(max_length=48)
-    logo = models.ImageField(upload_to=MEDIA_COMPANY_IMAGE_DIR, default=DEFAULT_COMPANY_IMAGE)
-    description = models.TextField()
-    employee_count = models.IntegerField()
-    owner = models.OneToOneField(User, on_delete=models.CASCADE, related_name='companies')
+    name = models.CharField(max_length=128, verbose_name='Название компаниии')
+    location = models.CharField(max_length=48, verbose_name='География')
+    logo = models.ImageField(upload_to=MEDIA_COMPANY_IMAGE_DIR, default=DEFAULT_COMPANY_IMAGE, verbose_name='Логотип')
+    description = models.TextField(verbose_name='Информация о компании')
+    employee_count = models.IntegerField(verbose_name='Количество человек в компании')
+    owner = models.OneToOneField(User, on_delete=models.SET_NULL, related_name='company', null=True, blank=True)
 
 
 class Specialty(models.Model):
