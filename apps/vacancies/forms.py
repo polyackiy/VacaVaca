@@ -2,7 +2,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from django.forms import ModelForm, Textarea
 
-from apps.vacancies.models import Application, Company
+from apps.vacancies.models import Application, Company, Vacancy, Specialty
 
 
 class ApplicationForm(ModelForm):
@@ -32,4 +32,19 @@ class CompanyForm(ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_method = 'post'
-        self.helper.add_input(Submit('submit', 'Сохранить'))
+        self.helper.add_input(Submit('submit', 'Сохранить', css_class='btn-info'))
+
+
+class VacancyForm(ModelForm):
+    class Meta:
+        model = Vacancy
+        fields = ['title', 'specialty', 'skills', 'description', 'salary_min', 'salary_max']
+        widgets = {
+            'description': Textarea(attrs={'rows': 16, }),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('submit', 'Сохранить', css_class='btn-info'))

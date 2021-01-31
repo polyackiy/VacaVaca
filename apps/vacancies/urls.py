@@ -1,6 +1,6 @@
 from django.urls import path, re_path
 
-from apps.vacancies.views import public, mycompany, myvacancies
+from apps.vacancies.views import public, mycompany, myvacanciesview
 
 app_name = 'vacancies'
 
@@ -19,7 +19,7 @@ urlpatterns = [
     path('mycompany/create/', mycompany.MyCompanyCreateView.as_view(), name='my_company_create'),
     path('mycompany/', mycompany.MyCompanyEditView.as_view(), name='my_company'),
 
-    path('mycompany/vacancies/', myvacancies.MyVacancies.as_view(), name='my_vacancies'),
-    path('mycompany/vacancies/create/', myvacancies.MyVacancyCreate.as_view(), name='my_vacancy_create'),
-    path('mycompany/vacancies/create/', myvacancies.MyVacancyEdit.as_view(), name='my_vacancy_edit'),
+    path('mycompany/vacancies/', myvacanciesview.MyVacanciesView.as_view(), name='my_vacancies'),
+    path('mycompany/vacancies/create/', myvacanciesview.MyVacancyCreateView.as_view(), name='my_vacancy_create'),
+    path('mycompany/vacancies/<int:pk>', myvacanciesview.MyVacancyEditView.as_view(), name='my_vacancy_edit'),
 ]
