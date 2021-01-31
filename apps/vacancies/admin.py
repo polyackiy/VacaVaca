@@ -22,5 +22,3 @@ admin.site.register(Company, CompanyAdmin)
 admin.site.register(Specialty, SpecialtyAdmin)
 admin.site.register(Vacancy, VacancyAdmin)
 admin.site.register(Application, ApplicationAdmin)
-
-

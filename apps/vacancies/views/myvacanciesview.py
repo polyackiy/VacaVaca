@@ -2,7 +2,7 @@ from datetime import date
 
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import get_object_or_404
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, ListView
 
 from apps.vacancies.forms import VacancyForm
